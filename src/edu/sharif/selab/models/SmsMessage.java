@@ -1,6 +1,7 @@
 package edu.sharif.selab.models;
 
-public class SmsMessage extends Message{
+public class SmsMessage implements Message {
+    private String content;
     private String sourcePhoneNumber;
     private String targetPhoneNumber;
 
@@ -18,5 +19,15 @@ public class SmsMessage extends Message{
 
     public void setTargetPhoneNumber(String targetPhoneNumber) {
         this.targetPhoneNumber = targetPhoneNumber;
+    }
+
+    @Override
+    public String getContent() {
+        return content;
+    }
+
+    @Override
+    public void setContent(String content) {
+        this.content = content;
     }
 }

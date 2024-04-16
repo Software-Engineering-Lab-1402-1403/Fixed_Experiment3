@@ -1,6 +1,7 @@
 package edu.sharif.selab.models;
 
-public class EmailMessage extends Message{
+public class EmailMessage implements Message{
+    private String content;
     private String sourceEmailAddress;
     private String targetEmailAddress;
 
@@ -18,5 +19,15 @@ public class EmailMessage extends Message{
 
     public void setTargetEmailAddress(String targetEmailAddress) {
         this.targetEmailAddress = targetEmailAddress;
+    }
+
+    @Override
+    public String getContent() {
+        return content;
+    }
+
+    @Override
+    public void setContent(String content) {
+        this.content = content;
     }
 }

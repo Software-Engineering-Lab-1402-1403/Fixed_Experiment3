@@ -1,13 +1,7 @@
 package edu.sharif.selab.models;
 
-public class Message {
-    String content;
+public interface Message {
+    public String getContent();
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public void setContent(String content);
 }
