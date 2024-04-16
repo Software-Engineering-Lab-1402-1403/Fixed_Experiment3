@@ -1,9 +1,11 @@
 import edu.sharif.selab.models.EmailMessage;
 import edu.sharif.selab.models.Message;
 import edu.sharif.selab.models.SmsMessage;
+import edu.sharif.selab.models.TelegramMessage;
 import edu.sharif.selab.services.EmailMessageService;
 import edu.sharif.selab.services.MessageService;
 import edu.sharif.selab.services.SmsMessageService;
+import edu.sharif.selab.services.TelegramMessageService;
 
 import java.util.Scanner;
 
@@ -21,6 +23,7 @@ public class Main {
 
             System.out.println("In order to send Sms message enter 1");
             System.out.println("In order to send Email message enter 2");
+            System.out.println("In order to send Telegram message enter 3");
             System.out.println("In order to Exit, Enter 0");
 
             userAnswer= scanner.nextInt();
@@ -57,6 +60,20 @@ public class Main {
                     emailMessage.setContent(content);
                     message = emailMessage;
                     messageService = new EmailMessageService();
+                    break;
+                case 3:
+                    TelegramMessage telegramMessage = new TelegramMessage();
+                    System.out.print("Enter source Id : ");
+                    source = scanner.next();
+                    telegramMessage.setSourceTelegramId(source);
+                    System.out.print("Enter target Id : ");
+                    target = scanner.next();
+                    telegramMessage.setTargetTelegramId(target);
+                    System.out.println("Write Your Message : ");
+                    content = scanner.next();
+                    telegramMessage.setContent(content);
+                    message = telegramMessage;
+                    messageService = new TelegramMessageService();
                     break;
             }
 
