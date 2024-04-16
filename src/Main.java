@@ -14,7 +14,7 @@ public class Main {
         int userAnswer=0;
         do{
             Message message = null;
-            MessageService messageService;
+            MessageService messageService = null;
             String source;
             String target;
             String content;
@@ -42,29 +42,25 @@ public class Main {
                     content = scanner.next(".*$");
                     smsMessage.setContent(content);
                     message = smsMessage;
+                    messageService = new SmsMessageService();
                     break;
                 case 2:
                     EmailMessage emailMessage = new EmailMessage();
-                    System.out.print("Enter source phone : ");
+                    System.out.print("Enter source email : ");
                     source = scanner.next();
                     emailMessage.setSourceEmailAddress(source);
-                    System.out.print("Enter target phone : ");
+                    System.out.print("Enter target email : ");
                     target = scanner.next();
                     emailMessage.setTargetEmailAddress(target);
                     System.out.println("Write Your Message : ");
                     content = scanner.next();
                     emailMessage.setContent(content);
                     message = emailMessage;
+                    messageService = new EmailMessageService();
                     break;
             }
 
-            if(message instanceof SmsMessage){
-                messageService = new SmsMessageService();
-                messageService.sendSmsMessage((SmsMessage) message);
-            }else if(message instanceof EmailMessage){
-                messageService = new EmailMessageService();
-                messageService.sendEmailMessage((EmailMessage) message);
-            }
+            messageService.sendMessage(message);
 
         }while (true);
     }

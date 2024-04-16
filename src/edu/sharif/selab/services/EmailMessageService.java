@@ -1,22 +1,20 @@
 package edu.sharif.selab.services;
 
 import edu.sharif.selab.models.EmailMessage;
+import edu.sharif.selab.models.Message;
 import edu.sharif.selab.models.SmsMessage;
 
 import java.util.regex.Pattern;
 
 public class EmailMessageService implements MessageService{
     @Override
-    public void sendSmsMessage(SmsMessage smsMessage) {
-        //Empty Body
-    }
-
-    @Override
-    public void sendEmailMessage(EmailMessage emailMessage) {
-        if(validateEmailAddress(emailMessage.getSourceEmailAddress()) && validateEmailAddress(emailMessage.getTargetEmailAddress())){
-            System.out.println("Sending a SMS from " + emailMessage.getSourceEmailAddress() + " to " + emailMessage.getTargetEmailAddress() + " with content : " + emailMessage.getContent());
-        }else{
-            throw new IllegalArgumentException("Email Address is Not Correct!");
+    public void sendMessage(Message message) {
+        if (message instanceof EmailMessage emailMessage) {
+            if(validateEmailAddress(emailMessage.getSourceEmailAddress()) && validateEmailAddress(emailMessage.getTargetEmailAddress())){
+                System.out.println("Sending a EMAIL from " + emailMessage.getSourceEmailAddress() + " to " + emailMessage.getTargetEmailAddress() + " with content : " + emailMessage.getContent());
+            }else{
+                throw new IllegalArgumentException("Email Address is Not Correct!");
+            }
         }
     }
 
